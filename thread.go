@@ -3,6 +3,8 @@ package main
 import (
 	"sort"
 	"time"
+	"fmt"
+	"path/filepath"
 
 	. "github.com/bytbox/go-mail"
 )
@@ -91,4 +93,11 @@ func Thread(msgs []Message) ([]*Threaded, []*Threaded) {
 
 	sort.Sort(sortable(threaded))
 	return all, threaded
+}
+
+
+func (tm *Threaded) Path() string {
+	month:=fmt.Sprintf("%02d",int(tm.Date.Month()))
+	year:=fmt.Sprintf("%d",tm.Date.Year())
+	return filepath.Join(year,month,fmt.Sprintf("%s", tm.Id))
 }

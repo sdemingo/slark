@@ -9,8 +9,7 @@
 <ul>
 {{range .}}
 
-
-<li><a href="{{.Id}}.html">{{.Subject}}</a> <em>{{with index .From 0}}{{.Name}}{{end}}</em>
+<li><a href="{{.Path}}/{{.Id}}.html">{{.Subject}}</a> <em>{{with index .From 0}}{{.Name}}{{end}}</em>
 
 {{template "msgIndex" .Children}}
 </li>

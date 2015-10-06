@@ -39,7 +39,9 @@ func writeHtml(odn, tdn string, all []*Threaded, msgs []*Threaded) {
 	msgTmpl := mktmpl(tdn, "message")
 
 	for _, msg := range all {
-		f, err := os.Create(filepath.Join(odn, fmt.Sprintf("%s.html", msg.Id)))
+		mpath:=msg.Path()
+		err := os.MkdirAll(filepath.Join(odn,mpath),0755)
+		f, err := os.Create(filepath.Join(odn,mpath, fmt.Sprintf("%s.html", msg.Id)))
 		if err != nil {
 			panic(err)
 		}
